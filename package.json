@@ -1,0 +1,13 @@
+{
+  "name": "offlineify-api",
+  "version": "1.0.0",
+  "description": "Simple demo API for Offlineify applications",
+  "main": "index.js",
+  "scripts": { },
+  "repository": {
+    "type": "git",
+    "url": "offlineify-api"
+  },
+  "author": "Adam Smith",
+  "license": "MIT"
+}
