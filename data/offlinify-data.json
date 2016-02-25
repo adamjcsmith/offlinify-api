@@ -154,10 +154,11 @@
     }
   },
   {
-    "timestamp": "1970-06-12T05:18:13-01:00",
+    "timestamp": "2016-02-25T15:23:13-01:00",
     "id": "7fc35fe7-2f83-4948-bf55-027e93b91240",
     "fields": {
-      "name": "Latasha Spence"
+      "name": "Latasha Spence",
+      "clicked": true
     }
   },
   {
