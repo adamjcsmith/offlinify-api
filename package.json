@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "Simple demo API for Offlineify applications",
   "main": "index.js",
-  "scripts": { },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "offlineify-api"
   },
   "author": "Adam Smith",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.5.1"
+  }
 }
