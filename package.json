@@ -11,6 +11,8 @@
   "author": "Adam Smith",
   "license": "MIT",
   "dependencies": {
-    "lodash": "^4.5.1"
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "lodash": "^4.6.0"
   }
 }

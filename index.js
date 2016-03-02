@@ -1,11 +1,16 @@
 var http = require('http');
 var url = require('url');
 var querystring = require('querystring');
+var express = require('express');
+var app = express();
+var cors = require('cors');
 
 var _ = require('lodash');
 
 var jsonData = require('./data/offlinify-data.json');
 var jsonDataBig = require('./data/offlinify-data-big.json');
+
+app.use(cors());
 
 var server = http.createServer(function(req, res) {
   var pathURL = url.parse(req.url).pathname;
