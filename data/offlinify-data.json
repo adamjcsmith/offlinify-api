@@ -22,10 +22,11 @@
     }
   },
   {
-    "timestamp": "2016-03-03T14:03:00-00:00",
+    "timestamp": "2016-03-03T14:06:00-00:00",
     "id": "b2947b21-79af-4596-97ea-92b9cbff59e3",
     "fields": {
-      "name": "Eleanor Trevino"
+      "name": "Eleanor Trevino",
+      "clicked": true
     }
   },
   {
