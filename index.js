@@ -35,7 +35,7 @@ var server = http.createServer(function(req, res) {
   }
   else if(pathURL == '/post') {
     res.writeHead(200, {"Content-Type": "application/JSON"});
-    console.log("Post request received..., request object is: " + JSON.stringify(req));
+    console.log("Post request received...");
     // Something.
   }
   else {
