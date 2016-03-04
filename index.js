@@ -43,7 +43,8 @@ var server = http.createServer(function(req, res) {
         return Date.parse(o.timestamp) > Date.parse(params.after);
       });
     }
-    res.write(JSON.stringify(filteredData));
+    //res.write(JSON.stringify(filteredData));
+    res.write(JSON.stringify(jsonDataBGMS)); // for now just return everything
   }
   else if(pathURL == '/post') {
     res.writeHead(200, {"Content-Type": "application/JSON"});
