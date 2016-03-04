@@ -9,6 +9,7 @@ var _ = require('lodash');
 
 var jsonData = require('./data/offlinify-data.json');
 var jsonDataBig = require('./data/offlinify-data-big.json');
+var jsonDataBGMS = require('./data/test-bgms.json');
 
 app.use(cors());
 
@@ -26,6 +27,17 @@ var server = http.createServer(function(req, res) {
     var filteredData;
     if(pathURL == '/get') filteredData = jsonData;
     else filteredData = jsonDataBig;
+    if(params.after) {
+      filteredData = _.filter(filteredData, function(o) {
+        return Date.parse(o.timestamp) > Date.parse(params.after);
+      });
+    }
+    res.write(JSON.stringify(filteredData));
+  }
+  else if(pathURL == 'getBGMS') {
+    var params = querystring.parse(url.parse(req.url).query);
+    res.writeHead(200, {"Content-Type": "application/JSON"});
+    var filteredData = jsonDataBGMS;
     if(params.after) {
       filteredData = _.filter(filteredData, function(o) {
         return Date.parse(o.timestamp) > Date.parse(params.after);
