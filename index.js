@@ -43,12 +43,17 @@ app.get('/getBig', function(req, res) {
 });
 
 app.get('/getBGMS', function(req, res) {
-	var filteredData = jsonDataBGMS;
+	var filteredData = _.cloneDeep(jsonDataBGMS);
 	
 	if(req.query.after) {
-      filteredData = _.filter(filteredData, function(o) {
-        return Date.parse(o.timestamp) > Date.parse(req.query.after);
+		
+		var actualFeatures = filteredData.features;
+		
+      filteredFeatures = _.filter(actualFeatures, function(o) {
+        return Date.parse(o.properties.time_updated) > Date.parse(req.query.after);
       });
+	  
+	  filteredData.features = filteredFeatures;
     }
 	
 	res.json(filteredData);
