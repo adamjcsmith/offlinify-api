@@ -13,49 +13,52 @@ var jsonDataBGMS = require('./data/test-bgms.json');
 
 app.use(cors());
 
-var server = http.createServer(function(req, res) {
-  var pathURL = url.parse(req.url).pathname;
-  res.writeHead(200, {"Content-Type": "text/html"});
 
-  if(pathURL == '/') {
-    res.writeHead(200, {"Content-Type": "text/html"});
-    res.write("<!doctype html><html><body><p>This is the Offlinify API. Use /get and /post.</p></body></html>");
-  }
-  else if(pathURL == '/get' || pathURL == '/getBig') {
-    var params = querystring.parse(url.parse(req.url).query);
-    res.writeHead(200, {"Content-Type": "application/JSON"});
-    var filteredData;
-    if(pathURL == '/get') filteredData = jsonData;
-    else filteredData = jsonDataBig;
-    if(params.after) {
-      filteredData = _.filter(filteredData, function(o) {
-        return Date.parse(o.timestamp) > Date.parse(params.after);
-      });
-    }
-    res.write(JSON.stringify(filteredData));
-  }
-  else if(pathURL == '/getBGMS') {
-    var params = querystring.parse(url.parse(req.url).query);
-    res.writeHead(200, {"Content-Type": "application/JSON"});
-    var filteredData = jsonDataBGMS;
-    if(params.after) {
-      filteredData = _.filter(filteredData, function(o) {
-        return Date.parse(o.timestamp) > Date.parse(params.after);
-      });
-    }
-    //res.write(JSON.stringify(filteredData));
-    res.write(JSON.stringify(jsonDataBGMS)); // for now just return everything
-  }
-  else if(pathURL == '/post') {
-    res.writeHead(200, {"Content-Type": "application/JSON"});
-    console.log("Post request received...");
-    // Something.
-  }
-  else {
-    res.writeHead(404);
-  }
-
-  res.end();
+app.get('/', function(req, res) {
+	res.render("<!doctype html><html><body><p>This is the Offlinify API. Use /get and /post.</p></body></html>");
 });
 
-server.listen(80);
+app.get('/get', function(req, res) {
+	var filteredData = jsonData;
+	
+	if(req.query.after) {
+      filteredData = _.filter(filteredData, function(o) {
+        return Date.parse(o.timestamp) > Date.parse(req.query.after);
+      });
+    }
+	
+	res.json(filteredData);
+});
+
+app.get('/getBig', function(req, res) {
+	var filteredData = jsonDataBig;
+	
+	if(req.query.after) {
+      filteredData = _.filter(filteredData, function(o) {
+        return Date.parse(o.timestamp) > Date.parse(req.query.after);
+      });
+    }
+	
+	res.json(filteredData);
+});
+
+app.get('/getBGMS', function(req, res) {
+	var filteredData = jsonDataBGMS;
+	
+	if(req.query.after) {
+      filteredData = _.filter(filteredData, function(o) {
+        return Date.parse(o.timestamp) > Date.parse(req.query.after);
+      });
+    }
+	
+	res.json(filteredData);
+});
+
+app.post('/post', function(req, res) {
+	console.log("Post request received.");
+});
+
+app.listen(80, function() {
+	console.log("Offlinify API listening on Port 80 (HTTP)");
+});
+
